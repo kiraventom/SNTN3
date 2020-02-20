@@ -15,10 +15,10 @@ namespace SNTN3_Forms
         public AddPicturesForm(VkApi api)
         {
             InitializeComponent();
-            _api = api;
-            if (_api.IsAuthorized)
+            Api = api;
+            if (Api.IsAuthorized)
             {
-                var acc = _api.Users.Get(new long[] { })[0];
+                var acc = Api.Users.Get(Array.Empty<long>())[0];
                 AccountNameL.Text = acc.FirstName + " " + acc.LastName;
             }
             PathsToPictures = new ObservableCollection<string>();
@@ -28,18 +28,23 @@ namespace SNTN3_Forms
 
         #region Свойства
 
-        private VkApi _api { get; }
+        private VkApi Api { get; }
         private ObservableCollection<string> PathsToPictures { get; set; }
+
         private readonly string[] AllowedExtensions = { "*.jpg", "*.jpeg", "*.png", "*.jfif", "*.gif" };
+        private readonly Size BtSize = new Size(200, 200);
 
         private Bitmap _deleteIcon;
+        /// <summary>
+        /// Иконка удаления, появляющаяся при наведении на картинку
+        /// </summary>
         private Bitmap DeleteIcon 
         {
             get
             {
                 if (_deleteIcon is null)
                 {
-                    _deleteIcon = new Bitmap(200, 140);
+                    _deleteIcon = new Bitmap(BtSize.Width, BtSize.Height);
                     using (Graphics g = Graphics.FromImage(_deleteIcon))
                     {
                         g.FillRectangle(
@@ -106,7 +111,7 @@ namespace SNTN3_Forms
                 foreach (string pathToNewPicture in e.NewItems)
                 {
                     Bitmap orig = new Bitmap(pathToNewPicture);
-                    Size btSize = new Size(200, 140);
+                    Size btSize = BtSize;
                     var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose();
@@ -174,30 +179,11 @@ namespace SNTN3_Forms
             }
 
             Hide();
-            /* Раньше я хранил в BackgroundImage оригинальную картинку, поэтому
-             * необходимо было ее диспоузить, чтобы при переходе на другую форму
-             * освобождалась память. Позже я сделал так, что в BackgroundImage
-             * хранится уменьшенная версия картинки (thumbnail), поэтому надобности
-             * в этом коде больше нет, так как влияние на память незначительное. */
 
-            //foreach (Button bt in PicturesFLP.Controls)
-            //{
-            //    bt.BackgroundImage.Dispose();
-            //}
-
-            var editPicsForm = new EditPicturesForm(_api, PathsToPictures.ToArray());
+            var editPicsForm = new EditPicturesForm(Api, PathsToPictures.ToArray());
             editPicsForm.ShowDialog();
             if (editPicsForm.DialogResult == DialogResult.No)
             {
-                //for (int i = 0; i < PicturesFLP.Controls.Count; ++i)
-                //{
-                //    Button bt = (Button)PicturesFLP.Controls[i];
-                //    Bitmap orig = new Bitmap(PathsToPictures[i]);
-                //    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, bt.Size);
-                //    Bitmap thumb = new Bitmap(orig, adjustedSize);
-                //    orig.Dispose();
-                //    bt.BackgroundImage = thumb;
-                //}
                 Show();
             }
             else

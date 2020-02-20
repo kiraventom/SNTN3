@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPicturesForm));
             this.EditGB = new System.Windows.Forms.GroupBox();
             this.editPreviewPB1 = new SNTN3_Forms.EditPreviewPB();
-            this.SaveBt = new System.Windows.Forms.Button();
             this.BrightnessColorBt = new System.Windows.Forms.Button();
             this.FramesTBr = new System.Windows.Forms.TrackBar();
             this.ToneColorBt = new System.Windows.Forms.Button();
@@ -60,7 +59,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.EditGB.Controls.Add(this.editPreviewPB1);
-            this.EditGB.Controls.Add(this.SaveBt);
             this.EditGB.Controls.Add(this.BrightnessColorBt);
             this.EditGB.Controls.Add(this.FramesTBr);
             this.EditGB.Controls.Add(this.ToneColorBt);
@@ -95,22 +93,6 @@
             this.editPreviewPB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.editPreviewPB1.TabIndex = 9;
             this.editPreviewPB1.TabStop = false;
-            // 
-            // SaveBt
-            // 
-            this.SaveBt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveBt.BackColor = System.Drawing.Color.LightGreen;
-            this.SaveBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveBt.Location = new System.Drawing.Point(16, 574);
-            this.SaveBt.Margin = new System.Windows.Forms.Padding(4, 25, 4, 4);
-            this.SaveBt.Name = "SaveBt";
-            this.SaveBt.Size = new System.Drawing.Size(280, 28);
-            this.SaveBt.TabIndex = 5;
-            this.SaveBt.Text = "Сохранить изменения";
-            this.SaveBt.UseVisualStyleBackColor = false;
-            this.SaveBt.Visible = false;
-            this.SaveBt.Click += new System.EventHandler(this.SaveBt_Click);
             // 
             // BrightnessColorBt
             // 
@@ -351,7 +333,6 @@
         private System.Windows.Forms.Button BrightnessColorBt;
         private System.Windows.Forms.TrackBar FramesTBr;
         private System.Windows.Forms.TrackBar BrightnessTBr;
-        private System.Windows.Forms.Button SaveBt;
         private System.Windows.Forms.Button RegenerateEditParamsBt;
         private System.Windows.Forms.FlowLayoutPanel PicturesFLP;
         private System.Windows.Forms.Button SettingsBt;

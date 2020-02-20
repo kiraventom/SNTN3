@@ -40,6 +40,7 @@
             // AccountNameL
             // 
             this.AccountNameL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AccountNameL.AutoEllipsis = true;
             this.AccountNameL.AutoSize = true;
             this.AccountNameL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AccountNameL.Location = new System.Drawing.Point(493, 16);

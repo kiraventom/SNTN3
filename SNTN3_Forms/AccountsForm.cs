@@ -51,6 +51,8 @@ namespace SNTN3_Forms
         private AccountsDB AccountsDB { get; }
         private ObservableCollection<Account> Accounts { get; }
 
+        private readonly Size BtSize = new Size(200, 200);
+
         #endregion
 
         #region Обработчики событий
@@ -99,9 +101,14 @@ namespace SNTN3_Forms
 
         #region Методы
 
+        /// <summary>
+        /// Рисует на картинке прозрачную белую подложку под текст, расположенный на кнопке внизу
+        /// </summary>
+        /// <param name="image">Картинка, на которой необходимо нарисовать подложку</param>
+        /// <param name="textSize">Размер текста в пунктах</param>
         private void DrawTextBackground(Bitmap image, float textSize)
         {
-            const double coef = 2.3;
+            const double coef = 2.3; // Хорошо бы брать его не с потолка, но больше неоткуда
             int textBackgroundHeight = image.Height - (int)Math.Round(textSize * coef);
             var rect = new Rectangle(
                 new Point(0, textBackgroundHeight),
@@ -118,6 +125,11 @@ namespace SNTN3_Forms
             }
         }
 
+        /// <summary>
+        /// Возвращает кнопку для переданного аккаунта
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         private Button CreateAccountBt(Account account)
         {
             const float textSize = 13;
@@ -127,7 +139,7 @@ namespace SNTN3_Forms
                 FlatStyle = FlatStyle.Flat,
                 BackgroundImage = account.ProfilePic,
                 BackgroundImageLayout = ImageLayout.Center,
-                Size = new Size(200, 200),
+                Size = BtSize,
                 TextAlign = ContentAlignment.BottomCenter,
                 Font = new Font(Font.Name, textSize, Font.Style),
                 ForeColor = Color.Black,
@@ -168,6 +180,11 @@ namespace SNTN3_Forms
             return accountBt;
         }
 
+        /// <summary>
+        /// Запрашивает информацию о переданных аккаунтах у ВК и возвращает их как класс Account
+        /// </summary>
+        /// <param name="accountsDict">Словарь ID\Token аккаунтов. Должен быть получен через AccountsDB.ReadAll()</param>
+        /// <returns>Массив аккаунтов (ФИ, токен, ID, фото)</returns>
         private Account[] GetAccountsInfoFromVk(Dictionary<string, string> accountsDict)
         {
             List<Account> accounts = new List<Account>();
@@ -189,7 +206,12 @@ namespace SNTN3_Forms
             return accounts.ToArray();
         }
 
-        private Bitmap GetBitmapFromUri(Uri uri)
+        /// <summary>
+        /// Возвращает объект Bitmap из изображения по переданному URL
+        /// </summary>
+        /// <param name="uri">URL к изображению</param>
+        /// <returns>Объект Bitmap</returns>
+        private static Bitmap GetBitmapFromUri(Uri uri)
         {
             System.Net.WebRequest request = System.Net.WebRequest.Create(uri);
             System.Net.WebResponse response = request.GetResponse();

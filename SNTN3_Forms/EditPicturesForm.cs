@@ -22,20 +22,27 @@ namespace SNTN3_Forms
             {
                 EditParams.Add(PictureEditParams.GetRandomParams());
             }
-            EasterEggCounter = 0;
         }
 
-        #region Свойства
+        #region Поля и свойства
 
         private VkApi Api { get; }
-        private string _pathsToPictures;
         public string[] PathsToPictures { get; }
-        private ObservableCollection<PictureEditParams> EditParams { get; }
+         /// <summary>
+         /// Коллекция параметров, с которыми должны быть отредактированы изображения. 
+         /// Методы этой коллекции необходимо использовать для применения изменений к изображениям.
+         /// </summary>
+        private ObservableCollection<PictureEditParams> EditParams { get; } 
 
-        private Color UnselectedBtColor { get; } = Color.LightGray;
-        private Color SelectedBtColor { get; } = Color.DarkSlateBlue;
+        private readonly Color UnselectedBtColor = Color.LightGray;
+        private readonly Color SelectedBtColor = Color.DarkSlateBlue;
+        private readonly Size BtSize = new Size(200, 200);
 
         private PictureEditParams _currentEditParams = new PictureEditParams();
+        /// <summary>
+        /// Свойство, хранящее данные о настройках, которые пользователь меняет в данный момент для выбранной картинки.
+        /// Используется для превью, чтобы пользователь в прямом эфире мог видеть применяемые изменения.
+        /// </summary>
         private PictureEditParams CurrentEditParams
         {
             get => _currentEditParams;
@@ -47,6 +54,9 @@ namespace SNTN3_Forms
         }
 
         private string _pathToCurrentPicture;
+        /// <summary>
+        /// Путь к выделенному изображению. Используется для превью.
+        /// </summary>
         private string PathToCurrentPicture
         {
             get => _pathToCurrentPicture;
@@ -58,6 +68,10 @@ namespace SNTN3_Forms
         }
 
         private int _selectedPictureIndex = -1;
+        /// <summary>
+        /// Свойство, хранящее индекс выделенной в данный момент картинки. При его изменении выбранные изменения сохраняются. 
+        /// Значение -1 отвечает за отсутствие выделения.
+        /// </summary>
         private int SelectedPictureIndex
         {
             get => _selectedPictureIndex;
@@ -92,7 +106,6 @@ namespace SNTN3_Forms
                     CurrentParamsToControls();
                     EditGB.Enabled = false;
                 }
-                EasterEggCounter = 0;
             }
         }
 
@@ -108,14 +121,14 @@ namespace SNTN3_Forms
             {
                 for (int i = 0; i < e.NewItems.Count; ++i)
                 {
-                    PictureEditParams editParams = (PictureEditParams)e.NewItems[i];
+                    PictureEditParams editParams = (PictureEditParams)e.NewItems[i]; 
                     int originalCollectionIndex = EditParams.IndexOf(editParams);
 
-                    Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]);
-                    Size btSize = new Size(200, 200);
+                    Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]); 
+                    Size btSize = BtSize;
                     var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
-                    orig.Dispose();
+                    orig.Dispose(); 
                     Button pictureBt = new Button()
                     {
                         Text = string.Empty,
@@ -138,13 +151,13 @@ namespace SNTN3_Forms
                 {
                     PictureEditParams editParams = (PictureEditParams)e.NewItems[i];
                     int originalCollectionIndex = EditParams.IndexOf(editParams);
-                    var button = PicturesFLP.Controls.OfType<Button>().Single(b => (int)b.Tag == originalCollectionIndex);
-                    button.BackgroundImage.Dispose();
+                    var buttonToReplace = PicturesFLP.Controls.OfType<Button>().Single(b => (int)b.Tag == originalCollectionIndex);
+
                     Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]);
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, button.Size);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, buttonToReplace.Size);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose();
-                    button.BackgroundImage = PictureEditParams.Edit(thumb, editParams);
+                    buttonToReplace.BackgroundImage = PictureEditParams.Edit(thumb, editParams);
                 }
             }
         }
@@ -260,42 +273,9 @@ namespace SNTN3_Forms
             BrightnessTBr.Enabled = BrightnessCB.Checked;
         }
 
-        private int EasterEggCounter;
-
         private void BrightnessColorBt_Click(object sender, EventArgs e)
         {
-            // little easter egg
-            ++EasterEggCounter;
-            if (EasterEggCounter == 8)
-            {
-                BrightnessColorBt.Enabled = false;
-                int red = 1, green = 0, blue = 0;
-                while (true)
-                {
-                    BrightnessColorBt.BackColor = Color.FromArgb(red, green, blue);
-                    BrightnessColorBt.Refresh();
-                    if (red < 255 && red != 0 && green == 0 && blue == 0)
-                        ++red;
-                    if (red == 255 && green < 255 && blue == 0)
-                        ++green; 
-                    if (red <= 255 && green == 255 && blue == 0)
-                        --red;
-                    if (red == 0 && green == 255 && blue < 255)
-                        ++blue;
-                    if (red == 0 && green <= 255 && blue == 255)
-                        --green;
-                    if (red == 0 && green == 0 && blue <= 255)
-                        --blue;
-                    if (red == 0 && green == 0 && blue == 0)
-                        break;
-                    System.Threading.Thread.Sleep(1);
-                }
-                EasterEggCounter = 0;
-                BrightnessColorBt.Enabled = true;
-            }
-
-
-            // По какой-то загадочной причине задание цвета по названию не работает
+            // По какой-то причине задание цвета по названию не работает
             //if (BrightnessColorBt.BackColor == Color.White) 
             if (BrightnessColorBt.BackColor == Color.FromArgb(255, 255, 255, 255))
             {
@@ -360,14 +340,6 @@ namespace SNTN3_Forms
 
         #endregion
 
-        //deprecated
-        private void SaveBt_Click(object sender, EventArgs e)
-        {
-            EditParams[SelectedPictureIndex] = CurrentEditParams;
-            CurrentEditParams = new PictureEditParams();
-            SelectedPictureIndex = -1;
-        }
-
         private void RegenerateEditParamsBt_Click(object sender, EventArgs e)
         {
             SelectedPictureIndex = -1;
@@ -407,30 +379,11 @@ namespace SNTN3_Forms
             }
 
             Hide();
-            /* Раньше я хранил в BackgroundImage оригинальную картинку, поэтому
-             * необходимо было ее диспоузить, чтобы при переходе на другую форму
-             * освобождалась память. Позже я сделал так, что в BackgroundImage
-             * хранится уменьшенная версия картинки (thumbnail), поэтому надобности
-             * в этом коде больше нет, так как влияние на память незначительное. */
-
-            //foreach (Button bt in PicturesFLP.Controls)
-            //{
-            //    bt.BackgroundImage.Dispose();
-            //}
 
             var postingForm = new PostingForm(Api, PathsToPictures, EditParams.ToArray());
             postingForm.ShowDialog();
             if (postingForm.DialogResult == DialogResult.No)
             {
-                //for (int i = 0; i < PicturesFLP.Controls.Count; ++i)
-                //{
-                //    Button bt = (Button)PicturesFLP.Controls[i];
-                //    Bitmap orig = new Bitmap(PathsToPictures[i]);
-                //    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, bt.Size);
-                //    Bitmap thumb = new Bitmap(orig, adjustedSize);
-                //    orig.Dispose();
-                //    bt.BackgroundImage = thumb;
-                //}
                 Show();
             }
             else
@@ -456,6 +409,9 @@ namespace SNTN3_Forms
 
         #region Методы
 
+        /// <summary>
+        /// Переносит параметры из CurrentEditParams на контролы панели редактирования.
+        /// </summary>
         private void CurrentParamsToControls()
         {
             if (CurrentEditParams is null)

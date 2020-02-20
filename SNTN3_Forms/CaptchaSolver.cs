@@ -1,9 +1,6 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Threading;
 
 namespace SNTN3_Forms.Captcha
 {
