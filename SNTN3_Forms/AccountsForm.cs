@@ -106,6 +106,12 @@ namespace SNTN3_Forms
             var rect = new Rectangle(
                 new Point(0, textBackgroundHeight),
                 new Size(image.Width, textBackgroundHeight));
+            // if account doesn't have a profile pic, VK returns image which has PixelFormat == Format8bppIndexed
+            // Such images don't support drawing background on them neither need it
+            if (image.PixelFormat == System.Drawing.Imaging.PixelFormat.Format8bppIndexed)
+            {
+                return;
+            }
             using (Graphics g = Graphics.FromImage(image))
             {
                 g.FillRectangle(new SolidBrush(Color.FromArgb(192, 255, 255, 255)), rect);
@@ -167,8 +173,7 @@ namespace SNTN3_Forms
             List<Account> accounts = new List<Account>();
             if (accountsDict.Count > 0)
             {
-                const string SNTN3Token = "1ee52fedde978f3e1b35b01d04c967c3724db43202f2ff77e0eda111a659279759df8ab5520bffaff3bd3";
-                Api.Authorize(new VkNet.Model.ApiAuthParams() { AccessToken = SNTN3Token });
+                Api.Authorize(new VkNet.Model.ApiAuthParams() { AccessToken = accountsDict.Values.ElementAt(0) });
                 var users = Api.Users.Get(accountsDict.Keys.Select(s => long.Parse(s)), VkNet.Enums.Filters.ProfileFields.Photo200);
                 Api.LogOut();
 
