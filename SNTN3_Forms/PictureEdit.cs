@@ -13,6 +13,12 @@ namespace SNTN3_Forms.PictureEdit
             Frames = null;
         }
 
+        public bool IsFlipped { get; set; }
+        public Tone? Tone { get; set; }
+        public Brightness? Brightness { get; set; }
+        public Frames? Frames { get; set; }
+        private static Random Random { get; } = new Random();
+
         public PictureEditParams(bool isFlipped, Tone? tone, Brightness? brightness, Frames? frames)
         {
             IsFlipped = isFlipped;
@@ -35,7 +41,7 @@ namespace SNTN3_Forms.PictureEdit
             return new PictureEditParams(isFlipped, tone, br, frames);
         }
 
-        public static Size AdjustImageSizeToControlSize(Size imageSize, Size controlSize)
+        public static Size AdjustImageSizeToSquareControl(Size imageSize, Size controlSize)
         {
             double ratio = imageSize.Width / (double)imageSize.Height;
 
@@ -85,12 +91,6 @@ namespace SNTN3_Forms.PictureEdit
             }
             return picture;
         }
-
-        public bool IsFlipped { get; set; }
-        public Tone? Tone { get; set; }
-        public Brightness? Brightness { get; set; }
-        public Frames? Frames { get; set; }
-        private static Random Random { get; } = new Random();
     }
 
     public struct Tone
@@ -101,6 +101,30 @@ namespace SNTN3_Forms.PictureEdit
         }
 
         public Color Color { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Tone)
+            {
+                return this.Color.Equals(((Tone)obj).Color);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Color.GetHashCode();
+        }
+
+        public static bool operator ==(Tone left, Tone right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Tone left, Tone right)
+        {
+            return !(left == right);
+        }
     }
 
     public struct Brightness
@@ -111,6 +135,30 @@ namespace SNTN3_Forms.PictureEdit
         }
 
         public Color Color { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Brightness)
+            {
+                return this.Color.Equals(((Brightness)obj).Color);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Color.GetHashCode();
+        }
+
+        public static bool operator ==(Brightness left, Brightness right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Brightness left, Brightness right)
+        {
+            return !(left == right);
+        }
     }
 
     public struct Frames
@@ -121,5 +169,29 @@ namespace SNTN3_Forms.PictureEdit
         }
 
         public int Size { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Frames)
+            {
+                return this.Size.Equals(((Frames)obj).Size);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Size.GetHashCode();
+        }
+
+        public static bool operator ==(Frames left, Frames right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Frames left, Frames right)
+        {
+            return !(left == right);
+        }
     }
 }

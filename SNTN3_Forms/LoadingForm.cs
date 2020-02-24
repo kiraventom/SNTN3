@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using SNTN3_Forms.PictureEdit;
+using System;
 using System.Drawing;
-using VkNet;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SNTN3_Forms.PictureEdit;
-using System.Net.Http;
+using VkNet;
 
 namespace SNTN3_Forms
 {
@@ -95,7 +91,6 @@ namespace SNTN3_Forms
                 }
             }
 
-            MessageBox.Show("Нажмите любую кнопку, чтобы закрыть программу :)", "Выход", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Information);
             Close();
         }
 

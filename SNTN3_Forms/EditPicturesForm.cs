@@ -126,7 +126,7 @@ namespace SNTN3_Forms
 
                     Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]); 
                     Size btSize = BtSize;
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, btSize);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose(); 
                     Button pictureBt = new Button()
@@ -154,7 +154,7 @@ namespace SNTN3_Forms
                     var buttonToReplace = PicturesFLP.Controls.OfType<Button>().Single(b => (int)b.Tag == originalCollectionIndex);
 
                     Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]);
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, buttonToReplace.Size);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, buttonToReplace.Size);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose();
                     buttonToReplace.BackgroundImage = PictureEditParams.Edit(thumb, editParams);

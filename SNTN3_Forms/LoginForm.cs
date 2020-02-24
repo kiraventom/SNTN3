@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using VkNet;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using VkNet;
 
 namespace SNTN3_Forms
 {
@@ -15,10 +9,11 @@ namespace SNTN3_Forms
         public LoginForm(VkApi api)
         {
             InitializeComponent();
-            _api = api;
+            Api = api;
         }
 
-        private VkApi _api { get; }
+        private VkApi Api { get; }
+        private const int SntnAppId = 7289220;
 
         private void AuthorizeBt_Click(object sender, EventArgs e)
         {
@@ -32,9 +27,9 @@ namespace SNTN3_Forms
 
             try
             {
-                _api.Authorize(new VkNet.Model.ApiAuthParams()
+                Api.Authorize(new VkNet.Model.ApiAuthParams()
                 {
-                    ApplicationId = 7289220,
+                    ApplicationId = SntnAppId,
                     Login = login,
                     Password = password,
                     Settings = VkNet.Enums.Filters.Settings.Groups | 
@@ -51,7 +46,7 @@ namespace SNTN3_Forms
             }
             catch (VkNet.Exception.VkAuthorizationException)
             {
-                MessageBox.Show("Неправильный логин или пароль. Если они точно правильные, попробуйте ещё раз через несколько минут.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Неправильный логин/пароль или ошибка ВК", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             

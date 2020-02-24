@@ -22,12 +22,6 @@ namespace SNTN3_Forms
             {
                 accountsForm.ShowDialog();
             }
-            //var addPicsForm = new AddPicturesForm(Api);
-            //addPicsForm.ShowDialog();
-            //var editForm = new EditPicturesForm(Api, new Bitmap[] { });
-            //editForm.ShowDialog();
-            //var postingForm = new PostingForm(Api);
-            //postingForm.ShowDialog();
             Close();
         }
     }

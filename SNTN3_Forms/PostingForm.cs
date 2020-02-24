@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using VkNet;
+using static SNTN3_Forms.Posting.Posting;
 
 namespace SNTN3_Forms
 {
@@ -28,6 +29,13 @@ namespace SNTN3_Forms
         private string[] PathsToPictures { get; }
         private PictureEditParams[] PictureEditParams { get; }
         private Random Rnd { get; }
+
+        /// <summary>
+        /// Максимальный оффсет, на который будет отклоняться время постинга. 
+        /// Необходим для обхода заполонения ленты в "круглое" время.
+        /// Измеряется в минутах.
+        /// </summary>
+        private const int MaxPostingOffset = 7;
 
         private void PostingForm_Load(object sender, EventArgs e)
         {
@@ -120,10 +128,13 @@ namespace SNTN3_Forms
             SaveChanges();
         }
 
+        
+
         private void PostBt_Click(object sender, EventArgs e)
         {
             if (GroupsCB.SelectedIndex < 0)
             {
+                MessageBox.Show("Не выбрана группа!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -138,31 +149,15 @@ namespace SNTN3_Forms
 
             SaveChanges();
 
-            var dateTimes = new List<DateTime>();
-            int daysCount = (int)Math.Ceiling((double)PathsToPictures.Length / Properties.Settings.Default.PostsCount);
-            int postsAmount = PathsToPictures.Length;
-
-            for (int i = 0; i < daysCount; ++i)
-            {
-                DateTime date = Properties.Settings.Default.StartingDateTime.AddDays(i);
-                for (int j = 0; postsAmount > 0 && j < Properties.Settings.Default.PostsCount; ++j)
-                {
-                    dateTimes.Add(date.AddMinutes(Rnd.Next(-7, 7)));
-                    date = date.AddHours(Properties.Settings.Default.TimeBetween);
-                    --postsAmount;
-                }
-            };
-
-            if /*somehow*/(dateTimes.Count != PathsToPictures.Length)
-            {
-                throw new Exception($"Количество вычисленных дат не совпадает с количеством постов." +
-                                    $"Количество дат: {dateTimes.Count}. Количество постов: {PathsToPictures.Length}");
-            }
-
+            var dateTimes = GetPostingDateTimes(PathsToPictures.Length, 
+                                                Properties.Settings.Default.StartingDateTime,
+                                                Properties.Settings.Default.PostsCount,
+                                                MaxPostingOffset,
+                                                Properties.Settings.Default.TimeBetween);
             long groupId = Groups[GroupsCB.SelectedIndex].Id;
             
             Hide();
-            var loadingForm = new LoadingForm(Api, dateTimes.ToArray(), groupId, PathsToPictures, PictureEditParams);
+            var loadingForm = new LoadingForm(Api, dateTimes, groupId, PathsToPictures, PictureEditParams);
             loadingForm.ShowDialog();
             if (loadingForm.DialogResult == DialogResult.No)
             {
