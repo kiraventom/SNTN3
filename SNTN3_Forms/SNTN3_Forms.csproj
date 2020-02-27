@@ -93,11 +93,11 @@
     <Compile Include="Accounts\AccountsModel.cs" />
     <Compile Include="Accounts\AccountsDB.cs" />
     <Compile Include="Accounts\AccountsStaticModel.cs" />
-    <Compile Include="EditPreviewPB.cs">
+    <Compile Include="Editing\PreviewPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EditPreviewPB.Designer.cs">
-      <DependentUpon>EditPreviewPB.cs</DependentUpon>
+    <Compile Include="Editing\PreviewPictureBox.Designer.cs">
+      <DependentUpon>PreviewPictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
@@ -105,7 +105,7 @@
     <Compile Include="LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PictureEdit.cs" />
+    <Compile Include="Editing\PictureEditing.cs" />
     <Compile Include="Accounts\AccountsView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,11 +125,11 @@
     <Compile Include="CaptchaSolverForm.Designer.cs">
       <DependentUpon>CaptchaSolverForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditPicturesForm.cs">
+    <Compile Include="Editing\EditPicturesView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditPicturesForm.Designer.cs">
-      <DependentUpon>EditPicturesForm.cs</DependentUpon>
+    <Compile Include="Editing\EditPicturesView.Designer.cs">
+      <DependentUpon>EditPicturesView.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -143,12 +143,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Posting.cs" />
-    <Compile Include="PostingForm.cs">
+    <Compile Include="PostingStaticModel.cs" />
+    <Compile Include="PostingView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PostingForm.Designer.cs">
-      <DependentUpon>PostingForm.cs</DependentUpon>
+    <Compile Include="PostingView.Designer.cs">
+      <DependentUpon>PostingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,11 +173,11 @@
     <EmbeddedResource Include="CaptchaSolverForm.resx">
       <DependentUpon>CaptchaSolverForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditPicturesForm.resx">
-      <DependentUpon>EditPicturesForm.cs</DependentUpon>
+    <EmbeddedResource Include="Editing\EditPicturesView.resx">
+      <DependentUpon>EditPicturesView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditPreviewPB.resx">
-      <DependentUpon>EditPreviewPB.cs</DependentUpon>
+    <EmbeddedResource Include="Editing\PreviewPictureBox.resx">
+      <DependentUpon>PreviewPictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
@@ -188,8 +188,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PostingForm.resx">
-      <DependentUpon>PostingForm.cs</DependentUpon>
+    <EmbeddedResource Include="PostingView.resx">
+      <DependentUpon>PostingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

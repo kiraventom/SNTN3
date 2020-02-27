@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SNTN3_Forms.Posting
 {
-    public static class Posting
+    public static class PostingStaticModel
     {
         private static Random Rnd { get; } = new Random();
 
@@ -15,14 +15,15 @@ namespace SNTN3_Forms.Posting
             var dateTimes = new List<DateTime>();
             int daysCount = (int)Math.Ceiling((double)postsAmount / postsPerDayCount);
 
+            int counter = postsAmount;
             for (int i = 0; i < daysCount; ++i)
             {
                 DateTime date = startDateTime.AddDays(i);
-                for (int j = 0; postsAmount > 0 && j < postsPerDayCount; ++j)
+                for (int j = 0; counter > 0 && j < postsPerDayCount; ++j)
                 {
                     dateTimes.Add(date.AddMinutes(Rnd.Next(-maxPostingOffset, maxPostingOffset)));
                     date = date.AddHours(timeBetween);
-                    --postsAmount;
+                    --counter;
                 }
             };
 

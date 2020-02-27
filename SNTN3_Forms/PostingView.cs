@@ -7,13 +7,13 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using VkNet;
-using static SNTN3_Forms.Posting.Posting;
+using static SNTN3_Forms.Posting.PostingStaticModel;
 
 namespace SNTN3_Forms
 {
-    public partial class PostingForm : Form
+    public partial class PostingView : Form
     {
-        public PostingForm(VkApi api, string[] pathsToPictures, PictureEditParams[] pictureEditParams)
+        public PostingView(VkApi api, string[] pathsToPictures, PictureEditParams[] pictureEditParams)
         {
             InitializeComponent();
             Api = api;

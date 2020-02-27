@@ -31,7 +31,7 @@
             SNTN3_Forms.PictureEdit.PictureEditParams pictureEditParams1 = new SNTN3_Forms.PictureEdit.PictureEditParams();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPicturesForm));
             this.EditGB = new System.Windows.Forms.GroupBox();
-            this.editPreviewPB1 = new SNTN3_Forms.EditPreviewPB();
+            this.editPreviewPB1 = new SNTN3_Forms.PreviewPictureBox();
             this.BrightnessColorBt = new System.Windows.Forms.Button();
             this.FramesTBr = new System.Windows.Forms.TrackBar();
             this.ToneColorBt = new System.Windows.Forms.Button();
@@ -336,6 +336,6 @@
         private System.Windows.Forms.Button RegenerateEditParamsBt;
         private System.Windows.Forms.FlowLayoutPanel PicturesFLP;
         private System.Windows.Forms.Button SettingsBt;
-        private EditPreviewPB editPreviewPB1;
+        private PreviewPictureBox editPreviewPB1;
     }
 }

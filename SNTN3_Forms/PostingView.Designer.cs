@@ -1,6 +1,6 @@
 ﻿namespace SNTN3_Forms
 {
-    partial class PostingForm
+    partial class PostingView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostingForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostingView));
             this.StartingDayL = new System.Windows.Forms.Label();
             this.StartingTimeL = new System.Windows.Forms.Label();
             this.PostsCountL = new System.Windows.Forms.Label();

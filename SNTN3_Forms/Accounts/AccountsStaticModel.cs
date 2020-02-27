@@ -44,7 +44,7 @@ namespace SNTN3_Forms.Accounts
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public static Button CreateAccountBt(Account account)
+        public static Button CreateAccountBt(Account account, MouseEventHandler handler)
         {
             const float textSize = 13;
             Button accountBt = new Button()
@@ -59,6 +59,7 @@ namespace SNTN3_Forms.Accounts
                 ForeColor = Color.Black,
                 Tag = account.Token
             };
+            accountBt.MouseUp += handler;
             DrawTextBackground(accountBt.BackgroundImage as Bitmap, textSize);
             return accountBt;
         }
