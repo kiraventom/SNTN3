@@ -49,8 +49,8 @@ namespace SNTN3_Forms
                 Groups.Add(group);
             }
 
-            StartingDateDP.MinDate = DateTime.Today;
             StartingDateDP.Value = Properties.Settings.Default.StartingDateTime.Date;
+            StartingDateDP.MinDate = DateTime.Today;
             StartingTimeNUD.Value = Properties.Settings.Default.StartingDateTime.Hour;
             PostsCountNUD.Value = Properties.Settings.Default.PostsCount;
             PostsCountNUD.Minimum = 1;
