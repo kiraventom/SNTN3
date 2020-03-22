@@ -1,6 +1,6 @@
 ﻿namespace SNTN3_Forms
 {
-    partial class EditPreviewPB
+    partial class PreviewPictureBox
     {
         /// <summary> 
         /// Required designer variable.

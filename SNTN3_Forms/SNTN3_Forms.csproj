@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
@@ -89,11 +92,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditPreviewPB.cs">
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\AccountsModel.cs" />
+    <Compile Include="Accounts\AccountsDB.cs" />
+    <Compile Include="Accounts\AccountsStaticModel.cs" />
+    <Compile Include="Editing\PreviewPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EditPreviewPB.Designer.cs">
-      <DependentUpon>EditPreviewPB.cs</DependentUpon>
+    <Compile Include="Editing\PreviewPictureBox.Designer.cs">
+      <DependentUpon>PreviewPictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
@@ -101,13 +108,12 @@
     <Compile Include="LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PictureEdit.cs" />
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountsForm.cs">
+    <Compile Include="Editing\PictureEditing.cs" />
+    <Compile Include="Accounts\AccountsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountsForm.Designer.cs">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
+    <Compile Include="Accounts\AccountsView.Designer.cs">
+      <DependentUpon>AccountsView.cs</DependentUpon>
     </Compile>
     <Compile Include="AddPicturesForm.cs">
       <SubType>Form</SubType>
@@ -122,12 +128,11 @@
     <Compile Include="CaptchaSolverForm.Designer.cs">
       <DependentUpon>CaptchaSolverForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccountsDB.cs" />
-    <Compile Include="EditPicturesForm.cs">
+    <Compile Include="Editing\EditPicturesView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditPicturesForm.Designer.cs">
-      <DependentUpon>EditPicturesForm.cs</DependentUpon>
+    <Compile Include="Editing\EditPicturesView.Designer.cs">
+      <DependentUpon>EditPicturesView.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -141,11 +146,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PostingForm.cs">
+    <Compile Include="PostingStaticModel.cs" />
+    <Compile Include="PostingView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PostingForm.Designer.cs">
-      <DependentUpon>PostingForm.cs</DependentUpon>
+    <Compile Include="PostingView.Designer.cs">
+      <DependentUpon>PostingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,8 +167,8 @@
     <Compile Include="TwoFactorForm.Designer.cs">
       <DependentUpon>TwoFactorForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AccountsForm.resx">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Accounts\AccountsView.resx">
+      <DependentUpon>AccountsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddPicturesForm.resx">
       <DependentUpon>AddPicturesForm.cs</DependentUpon>
@@ -170,11 +176,11 @@
     <EmbeddedResource Include="CaptchaSolverForm.resx">
       <DependentUpon>CaptchaSolverForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditPicturesForm.resx">
-      <DependentUpon>EditPicturesForm.cs</DependentUpon>
+    <EmbeddedResource Include="Editing\EditPicturesView.resx">
+      <DependentUpon>EditPicturesView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditPreviewPB.resx">
-      <DependentUpon>EditPreviewPB.cs</DependentUpon>
+    <EmbeddedResource Include="Editing\PreviewPictureBox.resx">
+      <DependentUpon>PreviewPictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
@@ -185,8 +191,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PostingForm.resx">
-      <DependentUpon>PostingForm.cs</DependentUpon>
+    <EmbeddedResource Include="PostingView.resx">
+      <DependentUpon>PostingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -250,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PostIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

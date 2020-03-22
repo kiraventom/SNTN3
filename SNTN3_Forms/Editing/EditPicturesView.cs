@@ -97,13 +97,13 @@ namespace SNTN3_Forms
                     PathToCurrentPicture = PathsToPictures[_selectedPictureIndex];
                     CurrentEditParams = EditParams[_selectedPictureIndex];
 
-                    CurrentParamsToControls();
+                    ParamsToControls(CurrentEditParams);
                 }
                 else
                 {
                     PathToCurrentPicture = null;
                     CurrentEditParams = null;
-                    CurrentParamsToControls();
+                    ParamsToControls(CurrentEditParams);
                     EditGB.Enabled = false;
                 }
             }
@@ -126,7 +126,7 @@ namespace SNTN3_Forms
 
                     Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]); 
                     Size btSize = BtSize;
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, btSize);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose(); 
                     Button pictureBt = new Button()
@@ -154,7 +154,7 @@ namespace SNTN3_Forms
                     var buttonToReplace = PicturesFLP.Controls.OfType<Button>().Single(b => (int)b.Tag == originalCollectionIndex);
 
                     Bitmap orig = new Bitmap(PathsToPictures[originalCollectionIndex]);
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, buttonToReplace.Size);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, buttonToReplace.Size);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose();
                     buttonToReplace.BackgroundImage = PictureEditParams.Edit(thumb, editParams);
@@ -380,7 +380,7 @@ namespace SNTN3_Forms
 
             Hide();
 
-            var postingForm = new PostingForm(Api, PathsToPictures, EditParams.ToArray());
+            var postingForm = new PostingView(Api, PathsToPictures, EditParams.ToArray());
             postingForm.ShowDialog();
             if (postingForm.DialogResult == DialogResult.No)
             {
@@ -407,14 +407,12 @@ namespace SNTN3_Forms
 
         #endregion
 
-        #region Методы
-
         /// <summary>
-        /// Переносит параметры из CurrentEditParams на контролы панели редактирования.
+        /// Переносит параметры на контролы панели редактирования.
         /// </summary>
-        private void CurrentParamsToControls()
+        private void ParamsToControls(PictureEditParams editParams)
         {
-            if (CurrentEditParams is null)
+            if (editParams is null)
             {
                 FlipCB.Checked = false;
                 ToneCB.Checked = false;
@@ -427,37 +425,35 @@ namespace SNTN3_Forms
                 FramesTBr.Value = FramesTBr.Minimum;
                 return;
             }
-            FlipCB.Checked = CurrentEditParams.IsFlipped;
+            FlipCB.Checked = editParams.IsFlipped;
 
-            ToneCB.Checked = CurrentEditParams.Tone.HasValue;
-            if (CurrentEditParams.Tone.HasValue)
+            ToneCB.Checked = editParams.Tone.HasValue;
+            if (editParams.Tone.HasValue)
             {
                 ToneColorBt.BackColor = Color.FromArgb(
                     255,
-                    CurrentEditParams.Tone.Value.Color.R,
-                    CurrentEditParams.Tone.Value.Color.G,
-                    CurrentEditParams.Tone.Value.Color.B);
-                ToneTBr.Value = CurrentEditParams.Tone.Value.Color.A;
+                    editParams.Tone.Value.Color.R,
+                    editParams.Tone.Value.Color.G,
+                    editParams.Tone.Value.Color.B);
+                ToneTBr.Value = editParams.Tone.Value.Color.A;
             }
 
-            BrightnessCB.Checked = CurrentEditParams.Brightness.HasValue;
-            if (CurrentEditParams.Brightness.HasValue)
+            BrightnessCB.Checked = editParams.Brightness.HasValue;
+            if (editParams.Brightness.HasValue)
             {
                 BrightnessColorBt.BackColor = Color.FromArgb(
-                    255, 
-                    CurrentEditParams.Brightness.Value.Color.R,
-                    CurrentEditParams.Brightness.Value.Color.G,
-                    CurrentEditParams.Brightness.Value.Color.B);
-                BrightnessTBr.Value = CurrentEditParams.Brightness.Value.Color.A;
+                    255,
+                    editParams.Brightness.Value.Color.R,
+                    editParams.Brightness.Value.Color.G,
+                    editParams.Brightness.Value.Color.B);
+                BrightnessTBr.Value = editParams.Brightness.Value.Color.A;
             }
 
-            FramesCB.Checked = CurrentEditParams.Frames.HasValue;
-            if (CurrentEditParams.Frames.HasValue)
+            FramesCB.Checked = editParams.Frames.HasValue;
+            if (editParams.Frames.HasValue)
             {
-                FramesTBr.Value = CurrentEditParams.Frames.Value.Size;
+                FramesTBr.Value = editParams.Frames.Value.Size;
             }
         }
-
-        #endregion
     }
 }

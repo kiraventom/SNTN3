@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace SNTN3_Forms
 {
-    public partial class EditPreviewPB : PictureBox
+    public partial class PreviewPictureBox : PictureBox
     {
-        public EditPreviewPB()
+        public PreviewPictureBox()
         {
             this.Size = BasicSize;
             InitializeComponent();

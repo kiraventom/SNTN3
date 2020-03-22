@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using SNTN3_Forms.PictureEdit;
+using System;
 using System.Drawing;
-using VkNet;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SNTN3_Forms.PictureEdit;
-using System.Net.Http;
+using VkNet;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 
 namespace SNTN3_Forms
 {
@@ -24,6 +24,13 @@ namespace SNTN3_Forms
             PictureEditParams = pictureEditParams;
             CurrentPostDateTime = new DateTime(9999, 12, 31, 23, 59, 59);
             MainPBr.Maximum = dateTimes.Length;
+
+            List<bool?> list = new List<bool?>();
+            for (int i = 0; i < PathsToPictures.Length; ++i)
+            {
+                list.Add(null);
+            }
+            PicsLoadedCorrectly = list.ToArray();
         }
 
         private VkApi Api { get; }
@@ -31,6 +38,7 @@ namespace SNTN3_Forms
         private long GroupId { get; }
         private string[] PathsToPictures { get; }
         private PictureEditParams[] PictureEditParams { get; }
+        private bool?[] PicsLoadedCorrectly { get; }
 
         private DateTime _currentPostDateTime;
         private DateTime CurrentPostDateTime
@@ -47,10 +55,19 @@ namespace SNTN3_Forms
         private async void LoadingForm_Load(object sender, EventArgs e)
         {
             var dateTimePr = new Progress<DateTime>(i => CurrentPostDateTime = i );
-            await StartPosting(dateTimePr);
+            var result = await StartPosting(dateTimePr);
+            if (result)
+            {
+                DialogResult = DialogResult.Yes;
+            }
+            else
+            {
+                DialogResult = DialogResult.No;
+            }
+            Close();
         }
 
-        private async Task StartPosting(IProgress<DateTime> dateTimePr)
+        private async Task<bool> StartPosting(IProgress<DateTime> dateTimePr)
         {
             var uploadServerInfo = Api.Photo.GetWallUploadServer(GroupId);
             for (int i = 0; i < DateTimes.Length; ++i)
@@ -79,24 +96,62 @@ namespace SNTN3_Forms
                         Attachments = wallPhoto
                     });
                 }
-                catch
+                catch (VkNet.Exception.ParameterMissingOrInvalidException e)
                 {
-                    MessageBox.Show("Произошла ошибка, связанная с ВК!");
+                    if (e.Message.Contains("publish_date"))
+                    {
+                        MessageBox.Show("Неверная дата! Повторите попытку.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Произошла ошибка на стороне ВК!\n" + e.Message);
+                    PicsLoadedCorrectly[i] = false;
                     continue;
                 }
+                PicsLoadedCorrectly[i] = true;
             }
 
-            var dr = MessageBox.Show("Все фото загружены. Удалить их?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            StringBuilder messageBuilder = new StringBuilder();
+            if (PicsLoadedCorrectly.Any(p => !p.Value))
+            {
+                messageBuilder.Append("Не загруженные фото: ");
+                for (int j = 0; j < PicsLoadedCorrectly.Length; ++j)
+                {
+                    if (!PicsLoadedCorrectly[j].Value)
+                    {
+                        messageBuilder.Append(Path.GetFileName(PathsToPictures[j]));
+                    }
+                    if (j != PicsLoadedCorrectly.Length - 1)
+                    {
+                        messageBuilder.Append(",");
+                    }
+                    messageBuilder.Append(" ");
+                }
+            }
+            else
+            {
+                messageBuilder.Append("Все фото успешно загружены!");
+            }
+            messageBuilder.Append("\nУдалить загруженные фото?");
+            var dr = MessageBox.Show(messageBuilder.ToString(), "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                foreach (var path in PathsToPictures)
+                for (int i = 0; i < PathsToPictures.Length; i++)
                 {
-                    System.IO.File.Delete(path);
+                    if (PicsLoadedCorrectly[i].Value)
+                    {
+                        System.IO.File.Delete(PathsToPictures[i]);
+                    }
                 }
             }
 
-            MessageBox.Show("Нажмите любую кнопку, чтобы закрыть программу :)", "Выход", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Information);
-            Close();
+            return true;
         }
 
         public static byte[] ToByteArray (Bitmap image)

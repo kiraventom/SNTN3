@@ -112,7 +112,7 @@ namespace SNTN3_Forms
                 {
                     Bitmap orig = new Bitmap(pathToNewPicture);
                     Size btSize = BtSize;
-                    var adjustedSize = PictureEditParams.AdjustImageSizeToControlSize(orig.Size, btSize);
+                    var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
                     orig.Dispose();
                     Button pictureBt = new Button()
