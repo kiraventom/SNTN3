@@ -108,6 +108,14 @@ namespace SNTN3_Forms
                     }
                     return false;
                 }
+                catch (TaskCanceledException e)
+                {
+                    MessageBox.Show(
+                        "Проверьте стабильность и скорость интернет-подключения " +
+                        "или уменьшите размер изображения");
+                    PicsLoadedCorrectly[i] = false;
+                    continue;
+                }
                 catch (Exception e)
                 {
                     MessageBox.Show("Произошла ошибка на стороне ВК!\n" + e.Message);
@@ -120,18 +128,14 @@ namespace SNTN3_Forms
             StringBuilder messageBuilder = new StringBuilder();
             if (PicsLoadedCorrectly.Any(p => !p.Value))
             {
-                messageBuilder.Append("Не загруженные фото: ");
+                messageBuilder.Append("Не загруженные фото:\n");
                 for (int j = 0; j < PicsLoadedCorrectly.Length; ++j)
                 {
                     if (!PicsLoadedCorrectly[j].Value)
                     {
                         messageBuilder.Append(Path.GetFileName(PathsToPictures[j]));
+                        messageBuilder.Append('\n');
                     }
-                    if (j != PicsLoadedCorrectly.Length - 1)
-                    {
-                        messageBuilder.Append(",");
-                    }
-                    messageBuilder.Append(" ");
                 }
             }
             else
@@ -146,7 +150,7 @@ namespace SNTN3_Forms
                 {
                     if (PicsLoadedCorrectly[i].Value)
                     {
-                        System.IO.File.Delete(PathsToPictures[i]);
+                        File.Delete(PathsToPictures[i]);
                     }
                 }
             }
@@ -156,7 +160,7 @@ namespace SNTN3_Forms
 
         public static byte[] ToByteArray (Bitmap image)
         {
-            using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+            using (MemoryStream memoryStream = new System.IO.MemoryStream())
             {
                 image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
                 return memoryStream.ToArray();
