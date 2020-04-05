@@ -20,7 +20,7 @@ namespace SNTN3_Forms
             EditParams.CollectionChanged += EditParams_CollectionChanged;
             for (int i = 0; i < pathsToPictures.Length; ++i)
             {
-                EditParams.Add(PictureEditParams.GetRandomParams());
+                EditParams.Add(new PictureEditParams());
             }
         }
 
