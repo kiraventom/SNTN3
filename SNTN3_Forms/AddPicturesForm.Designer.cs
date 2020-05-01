@@ -161,7 +161,7 @@
             this.MinimumSize = new System.Drawing.Size(569, 101);
             this.Name = "AddPicturesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Скажи Немезиде Нет! 3.0";
+            this.Text = "Скажи Немезиде Нет!";
             this.ResumeLayout(false);
             this.PerformLayout();
 

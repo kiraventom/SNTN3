@@ -105,7 +105,7 @@
             this.MinimumSize = new System.Drawing.Size(354, 105);
             this.Name = "AccountsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Скажи Немезиде Нет! 3.0";
+            this.Text = "Скажи Немезиде Нет!";
             this.ResumeLayout(false);
             this.PerformLayout();
 
