@@ -182,5 +182,16 @@ namespace SNTN3_Forms
                 Close();
             }
         }
+
+        private void HelpBt_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text: "Для начала публикации нажмите на кнопку с изображением публикации.\n" +
+                "Перед публикацией укажите паблик для публикации и настройки даты и времени\n" +
+                "Для возврата к редактированию и сбросу настроек публикации нажмите кнопку с изображением стрелки влево.",
+                caption: "Справка",
+                buttons: MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Question);
+        }
     }
 }

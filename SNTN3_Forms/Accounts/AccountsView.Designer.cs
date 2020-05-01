@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AccountsFLP = new System.Windows.Forms.FlowLayoutPanel();
             this.ChooseAccountL = new System.Windows.Forms.Label();
             this.AddAccountBt = new System.Windows.Forms.Button();
+            this.HelpBt = new System.Windows.Forms.Button();
+            this.AccountsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // AccountsFLP
@@ -68,14 +71,33 @@
             this.AddAccountBt.Name = "AddAccountBt";
             this.AddAccountBt.Size = new System.Drawing.Size(55, 50);
             this.AddAccountBt.TabIndex = 1;
+            this.AccountsToolTip.SetToolTip(this.AddAccountBt, "Добавление нового аккаунта");
             this.AddAccountBt.UseVisualStyleBackColor = false;
             this.AddAccountBt.Click += new System.EventHandler(this.AddAccountBt_Click);
+            // 
+            // HelpBt
+            // 
+            this.HelpBt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HelpBt.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.HelpBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HelpBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpBt.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HelpBt.Location = new System.Drawing.Point(715, 14);
+            this.HelpBt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.HelpBt.Name = "HelpBt";
+            this.HelpBt.Size = new System.Drawing.Size(55, 50);
+            this.HelpBt.TabIndex = 2;
+            this.HelpBt.Text = "?";
+            this.AccountsToolTip.SetToolTip(this.HelpBt, "Справка");
+            this.HelpBt.UseVisualStyleBackColor = false;
+            this.HelpBt.Click += new System.EventHandler(this.HelpBt_Click);
             // 
             // AccountsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 455);
+            this.Controls.Add(this.HelpBt);
             this.Controls.Add(this.AddAccountBt);
             this.Controls.Add(this.ChooseAccountL);
             this.Controls.Add(this.AccountsFLP);
@@ -93,6 +115,8 @@
         private System.Windows.Forms.FlowLayoutPanel AccountsFLP;
         private System.Windows.Forms.Label ChooseAccountL;
         private System.Windows.Forms.Button AddAccountBt;
+        private System.Windows.Forms.Button HelpBt;
+        private System.Windows.Forms.ToolTip AccountsToolTip;
     }
 }
 

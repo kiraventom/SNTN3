@@ -20,7 +20,7 @@ namespace SNTN3_Forms
             EditParams.CollectionChanged += EditParams_CollectionChanged;
             for (int i = 0; i < pathsToPictures.Length; ++i)
             {
-                EditParams.Add(PictureEditParams.GetRandomParams());
+                EditParams.Add(new PictureEditParams());
             }
         }
 
@@ -454,6 +454,22 @@ namespace SNTN3_Forms
             {
                 FramesTBr.Value = editParams.Frames.Value.Size;
             }
+        }
+
+        private void HelpBt_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text: "Для применения случайных изменений нажмите на кнопку с изображением закруглённой стрелки.\n" +
+                "Для изменения границ случайных изменений нажмите на кнопку с изображением шестерёнки.\n" +
+                "Для возврата к добавлению фотографий и сбросу всех изменений нажмите на кнопку с изображением стрелки влево\n" +
+                "Для перехода к публикации фотографий нажмите на кнопку с изображением стрелки вправо.\n" +
+                "Для изменения параметров редактирования изображения нажмите на изображение.\n" +
+                "Для выбора цвета тона нажмите на квадрат с цветом.\n" +
+                "Для выбора изменения яркости в светлую или тёмную сторону нажмите на квадрат с цветом текущего состояния.\n" +
+                "Для применения изменений к выбранному изображению нажмите на другое изображение или на свободное место в области изображений.",
+                caption: "Справка",
+                buttons: MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Question);
         }
     }
 }

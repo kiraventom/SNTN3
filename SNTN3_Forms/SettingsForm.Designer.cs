@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ToneGB = new System.Windows.Forms.GroupBox();
-            this.ToneBottomLimitNUD = new System.Windows.Forms.NumericUpDown();
-            this.ToneUpLimitNUD = new System.Windows.Forms.NumericUpDown();
-            this.ToneBottomLimitL = new System.Windows.Forms.Label();
             this.ToneUpLimitL = new System.Windows.Forms.Label();
+            this.ToneBottomLimitL = new System.Windows.Forms.Label();
+            this.ToneUpLimitNUD = new System.Windows.Forms.NumericUpDown();
+            this.ToneBottomLimitNUD = new System.Windows.Forms.NumericUpDown();
             this.BrightnessGB = new System.Windows.Forms.GroupBox();
             this.BrightnessUpLimitL = new System.Windows.Forms.Label();
             this.BrightnessBottomLimit = new System.Windows.Forms.Label();
@@ -44,9 +45,11 @@
             this.FramesUpLimitNUD = new System.Windows.Forms.NumericUpDown();
             this.FramesBottomLimitNUD = new System.Windows.Forms.NumericUpDown();
             this.SaveSettingsBt = new System.Windows.Forms.Button();
+            this.HelpBt = new System.Windows.Forms.Button();
+            this.SettingsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ToneGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ToneBottomLimitNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToneUpLimitNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToneBottomLimitNUD)).BeginInit();
             this.BrightnessGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessUpLimitNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessBottomLimitNUD)).BeginInit();
@@ -70,24 +73,24 @@
             this.ToneGB.TabStop = false;
             this.ToneGB.Text = "Тон";
             // 
-            // ToneBottomLimitNUD
+            // ToneUpLimitL
             // 
-            this.ToneBottomLimitNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ToneBottomLimitNUD.Location = new System.Drawing.Point(319, 21);
-            this.ToneBottomLimitNUD.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ToneBottomLimitNUD.Name = "ToneBottomLimitNUD";
-            this.ToneBottomLimitNUD.Size = new System.Drawing.Size(92, 22);
-            this.ToneBottomLimitNUD.TabIndex = 0;
-            this.ToneBottomLimitNUD.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.ToneBottomLimitNUD.ValueChanged += new System.EventHandler(this.ToneBottomLimitNUD_ValueChanged);
+            this.ToneUpLimitL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ToneUpLimitL.AutoSize = true;
+            this.ToneUpLimitL.Location = new System.Drawing.Point(6, 61);
+            this.ToneUpLimitL.Name = "ToneUpLimitL";
+            this.ToneUpLimitL.Size = new System.Drawing.Size(236, 17);
+            this.ToneUpLimitL.TabIndex = 1;
+            this.ToneUpLimitL.Text = "Максимальная прозрачность тона";
+            // 
+            // ToneBottomLimitL
+            // 
+            this.ToneBottomLimitL.AutoSize = true;
+            this.ToneBottomLimitL.Location = new System.Drawing.Point(6, 24);
+            this.ToneBottomLimitL.Name = "ToneBottomLimitL";
+            this.ToneBottomLimitL.Size = new System.Drawing.Size(230, 17);
+            this.ToneBottomLimitL.TabIndex = 1;
+            this.ToneBottomLimitL.Text = "Минимальная прозрачность тона";
             // 
             // ToneUpLimitNUD
             // 
@@ -108,24 +111,24 @@
             0});
             this.ToneUpLimitNUD.ValueChanged += new System.EventHandler(this.ToneUpLimitNUD_ValueChanged);
             // 
-            // ToneBottomLimitL
+            // ToneBottomLimitNUD
             // 
-            this.ToneBottomLimitL.AutoSize = true;
-            this.ToneBottomLimitL.Location = new System.Drawing.Point(6, 24);
-            this.ToneBottomLimitL.Name = "ToneBottomLimitL";
-            this.ToneBottomLimitL.Size = new System.Drawing.Size(230, 17);
-            this.ToneBottomLimitL.TabIndex = 1;
-            this.ToneBottomLimitL.Text = "Минимальная прозрачность тона";
-            // 
-            // ToneUpLimitL
-            // 
-            this.ToneUpLimitL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ToneUpLimitL.AutoSize = true;
-            this.ToneUpLimitL.Location = new System.Drawing.Point(6, 61);
-            this.ToneUpLimitL.Name = "ToneUpLimitL";
-            this.ToneUpLimitL.Size = new System.Drawing.Size(236, 17);
-            this.ToneUpLimitL.TabIndex = 1;
-            this.ToneUpLimitL.Text = "Максимальная прозрачность тона";
+            this.ToneBottomLimitNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToneBottomLimitNUD.Location = new System.Drawing.Point(319, 21);
+            this.ToneBottomLimitNUD.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ToneBottomLimitNUD.Name = "ToneBottomLimitNUD";
+            this.ToneBottomLimitNUD.Size = new System.Drawing.Size(92, 22);
+            this.ToneBottomLimitNUD.TabIndex = 0;
+            this.ToneBottomLimitNUD.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.ToneBottomLimitNUD.ValueChanged += new System.EventHandler(this.ToneBottomLimitNUD_ValueChanged);
             // 
             // BrightnessGB
             // 
@@ -267,14 +270,32 @@
             this.SaveSettingsBt.Name = "SaveSettingsBt";
             this.SaveSettingsBt.Size = new System.Drawing.Size(55, 50);
             this.SaveSettingsBt.TabIndex = 1;
+            this.SettingsToolTip.SetToolTip(this.SaveSettingsBt, "Сохранить и выйти");
             this.SaveSettingsBt.UseVisualStyleBackColor = false;
             this.SaveSettingsBt.Click += new System.EventHandler(this.SaveSettingsBt_Click);
+            // 
+            // HelpBt
+            // 
+            this.HelpBt.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.HelpBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HelpBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpBt.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold);
+            this.HelpBt.Location = new System.Drawing.Point(369, 297);
+            this.HelpBt.Margin = new System.Windows.Forms.Padding(13, 2, 3, 2);
+            this.HelpBt.Name = "HelpBt";
+            this.HelpBt.Size = new System.Drawing.Size(55, 50);
+            this.HelpBt.TabIndex = 2;
+            this.HelpBt.Text = "?";
+            this.SettingsToolTip.SetToolTip(this.HelpBt, "Справка");
+            this.HelpBt.UseVisualStyleBackColor = false;
+            this.HelpBt.Click += new System.EventHandler(this.HelpBt_Click);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 358);
+            this.Controls.Add(this.HelpBt);
             this.Controls.Add(this.SaveSettingsBt);
             this.Controls.Add(this.FramesGB);
             this.Controls.Add(this.BrightnessGB);
@@ -286,8 +307,8 @@
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ToneGB.ResumeLayout(false);
             this.ToneGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ToneBottomLimitNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToneUpLimitNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToneBottomLimitNUD)).EndInit();
             this.BrightnessGB.ResumeLayout(false);
             this.BrightnessGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessUpLimitNUD)).EndInit();
@@ -318,5 +339,7 @@
         private System.Windows.Forms.NumericUpDown FramesUpLimitNUD;
         private System.Windows.Forms.NumericUpDown FramesBottomLimitNUD;
         private System.Windows.Forms.Button SaveSettingsBt;
+        private System.Windows.Forms.Button HelpBt;
+        private System.Windows.Forms.ToolTip SettingsToolTip;
     }
 }
