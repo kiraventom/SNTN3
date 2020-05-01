@@ -47,8 +47,8 @@
             this.PrevStepBt = new System.Windows.Forms.Button();
             this.NextStepBt = new System.Windows.Forms.Button();
             this.HelpBt = new System.Windows.Forms.Button();
-            this.editPreviewPB1 = new SNTN3_Forms.PreviewPictureBox();
             this.EditToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.editPreviewPB1 = new SNTN3_Forms.PreviewPictureBox();
             this.EditGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FramesTBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessTBr)).BeginInit();
@@ -339,7 +339,7 @@
             this.MinimumSize = new System.Drawing.Size(306, 745);
             this.Name = "EditPicturesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Скажи Немезиде Нет! 3.0";
+            this.Text = "Скажи Немезиде Нет!";
             this.EditGB.ResumeLayout(false);
             this.EditGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FramesTBr)).EndInit();

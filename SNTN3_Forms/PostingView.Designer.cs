@@ -303,7 +303,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PostingView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Скажи Немезиде Нет! 3.0";
+            this.Text = "Скажи Немезиде Нет!";
             this.Load += new System.EventHandler(this.PostingForm_Load);
             this.MainP.ResumeLayout(false);
             this.MainP.PerformLayout();

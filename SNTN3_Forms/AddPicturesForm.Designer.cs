@@ -46,7 +46,7 @@
             this.AccountNameL.AutoEllipsis = true;
             this.AccountNameL.AutoSize = true;
             this.AccountNameL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AccountNameL.Location = new System.Drawing.Point(493, 16);
+            this.AccountNameL.Location = new System.Drawing.Point(439, 16);
             this.AccountNameL.Margin = new System.Windows.Forms.Padding(47, 0, 4, 0);
             this.AccountNameL.Name = "AccountNameL";
             this.AccountNameL.Size = new System.Drawing.Size(221, 29);
@@ -161,7 +161,7 @@
             this.MinimumSize = new System.Drawing.Size(569, 101);
             this.Name = "AddPicturesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Скажи Немезиде Нет! 3.0";
+            this.Text = "Скажи Немезиде Нет!";
             this.ResumeLayout(false);
             this.PerformLayout();
 
