@@ -210,6 +210,11 @@
     <EmbeddedResource Include="TwoFactorForm.resx">
       <DependentUpon>TwoFactorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Docs\1_laba.docx" />
+    <None Include="Docs\2_laba.docx" />
+    <None Include="Docs\3_laba.docx" />
+    <None Include="Docs\4_laba.docx" />
+    <None Include="Docs\5_laba.docx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
