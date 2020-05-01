@@ -61,5 +61,15 @@ namespace SNTN3_Forms
         {
             FramesBottomLimitNUD.Maximum = FramesUpLimitNUD.Value;
         }
+
+        private void HelpBt_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text: "Здесь можно настроить границы, в которых генерируется случайные значения параметров.\n" +
+                "Для сохранения изменений нажмите кнопку с изображением дискеты.",
+                caption: "Справка",
+                buttons: MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Question);
+        }
     }
 }

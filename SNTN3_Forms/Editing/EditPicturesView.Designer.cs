@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SNTN3_Forms.PictureEdit.PictureEditParams pictureEditParams1 = new SNTN3_Forms.PictureEdit.PictureEditParams();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPicturesForm));
+            SNTN3_Forms.PictureEdit.PictureEditParams pictureEditParams1 = new SNTN3_Forms.PictureEdit.PictureEditParams();
             this.EditGB = new System.Windows.Forms.GroupBox();
-            this.editPreviewPB1 = new SNTN3_Forms.PreviewPictureBox();
             this.BrightnessColorBt = new System.Windows.Forms.Button();
             this.FramesTBr = new System.Windows.Forms.TrackBar();
             this.ToneColorBt = new System.Windows.Forms.Button();
@@ -46,11 +46,14 @@
             this.RegenerateEditParamsBt = new System.Windows.Forms.Button();
             this.PrevStepBt = new System.Windows.Forms.Button();
             this.NextStepBt = new System.Windows.Forms.Button();
+            this.HelpBt = new System.Windows.Forms.Button();
+            this.editPreviewPB1 = new SNTN3_Forms.PreviewPictureBox();
+            this.EditToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.EditGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editPreviewPB1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FramesTBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessTBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToneTBr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPreviewPB1)).BeginInit();
             this.SuspendLayout();
             // 
             // EditGB
@@ -78,22 +81,6 @@
             this.EditGB.TabStop = false;
             this.EditGB.Text = "Панель редактирования";
             // 
-            // editPreviewPB1
-            // 
-            this.editPreviewPB1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.editPreviewPB1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.editPreviewPB1.Location = new System.Drawing.Point(16, 307);
-            this.editPreviewPB1.Name = "editPreviewPB1";
-            pictureEditParams1.Brightness = null;
-            pictureEditParams1.Frames = null;
-            pictureEditParams1.IsFlipped = false;
-            pictureEditParams1.Tone = null;
-            this.editPreviewPB1.PicEditParams = pictureEditParams1;
-            this.editPreviewPB1.Size = new System.Drawing.Size(102, 82);
-            this.editPreviewPB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.editPreviewPB1.TabIndex = 9;
-            this.editPreviewPB1.TabStop = false;
-            // 
             // BrightnessColorBt
             // 
             this.BrightnessColorBt.BackColor = System.Drawing.Color.White;
@@ -104,6 +91,7 @@
             this.BrightnessColorBt.Name = "BrightnessColorBt";
             this.BrightnessColorBt.Size = new System.Drawing.Size(33, 28);
             this.BrightnessColorBt.TabIndex = 4;
+            this.EditToolTip.SetToolTip(this.BrightnessColorBt, "Выбор направления изменения яркости");
             this.BrightnessColorBt.UseVisualStyleBackColor = false;
             this.BrightnessColorBt.Click += new System.EventHandler(this.BrightnessColorBt_Click);
             // 
@@ -120,6 +108,7 @@
             this.FramesTBr.Size = new System.Drawing.Size(288, 28);
             this.FramesTBr.TabIndex = 3;
             this.FramesTBr.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.EditToolTip.SetToolTip(this.FramesTBr, "Размер рамок");
             this.FramesTBr.Scroll += new System.EventHandler(this.FramesTBr_Scroll);
             // 
             // ToneColorBt
@@ -131,6 +120,7 @@
             this.ToneColorBt.Name = "ToneColorBt";
             this.ToneColorBt.Size = new System.Drawing.Size(33, 28);
             this.ToneColorBt.TabIndex = 4;
+            this.EditToolTip.SetToolTip(this.ToneColorBt, "Выбор цвета");
             this.ToneColorBt.UseVisualStyleBackColor = true;
             this.ToneColorBt.Click += new System.EventHandler(this.ToneColorBt_Click);
             // 
@@ -148,6 +138,7 @@
             this.BrightnessTBr.Size = new System.Drawing.Size(247, 28);
             this.BrightnessTBr.TabIndex = 3;
             this.BrightnessTBr.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.EditToolTip.SetToolTip(this.BrightnessTBr, "Настройка степени изменения яркости");
             this.BrightnessTBr.Scroll += new System.EventHandler(this.BrightnessTBr_Scroll);
             // 
             // ToneTBr
@@ -164,6 +155,7 @@
             this.ToneTBr.Size = new System.Drawing.Size(247, 28);
             this.ToneTBr.TabIndex = 3;
             this.ToneTBr.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.EditToolTip.SetToolTip(this.ToneTBr, "Настройка прозрачности тона");
             this.ToneTBr.Scroll += new System.EventHandler(this.ToneTBr_Scroll);
             // 
             // FramesCB
@@ -218,6 +210,7 @@
             this.FlipCB.TabIndex = 0;
             this.FlipCB.Tag = "Flip";
             this.FlipCB.Text = "Отразить";
+            this.EditToolTip.SetToolTip(this.FlipCB, "Отражение по горизонтали");
             this.FlipCB.UseVisualStyleBackColor = true;
             this.FlipCB.Click += new System.EventHandler(this.FlipCB_Click);
             // 
@@ -246,6 +239,7 @@
             this.SettingsBt.Name = "SettingsBt";
             this.SettingsBt.Size = new System.Drawing.Size(55, 50);
             this.SettingsBt.TabIndex = 1;
+            this.EditToolTip.SetToolTip(this.SettingsBt, "Настройки границ случайных изменений");
             this.SettingsBt.UseVisualStyleBackColor = false;
             this.SettingsBt.Click += new System.EventHandler(this.SettingsBt_Click);
             // 
@@ -260,6 +254,7 @@
             this.RegenerateEditParamsBt.Name = "RegenerateEditParamsBt";
             this.RegenerateEditParamsBt.Size = new System.Drawing.Size(55, 50);
             this.RegenerateEditParamsBt.TabIndex = 1;
+            this.EditToolTip.SetToolTip(this.RegenerateEditParamsBt, "Применить случайные изменения");
             this.RegenerateEditParamsBt.UseVisualStyleBackColor = false;
             this.RegenerateEditParamsBt.Click += new System.EventHandler(this.RegenerateEditParamsBt_Click);
             // 
@@ -275,6 +270,7 @@
             this.PrevStepBt.Name = "PrevStepBt";
             this.PrevStepBt.Size = new System.Drawing.Size(55, 50);
             this.PrevStepBt.TabIndex = 1;
+            this.EditToolTip.SetToolTip(this.PrevStepBt, "Вернуться к добавлению");
             this.PrevStepBt.UseVisualStyleBackColor = false;
             this.PrevStepBt.Click += new System.EventHandler(this.PrevStepBt_Click);
             // 
@@ -290,14 +286,49 @@
             this.NextStepBt.Name = "NextStepBt";
             this.NextStepBt.Size = new System.Drawing.Size(55, 50);
             this.NextStepBt.TabIndex = 1;
+            this.EditToolTip.SetToolTip(this.NextStepBt, "Перейти к публикации");
             this.NextStepBt.UseVisualStyleBackColor = false;
             this.NextStepBt.Click += new System.EventHandler(this.NextStepBt_Click);
+            // 
+            // HelpBt
+            // 
+            this.HelpBt.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.HelpBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HelpBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpBt.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold);
+            this.HelpBt.Location = new System.Drawing.Point(171, 14);
+            this.HelpBt.Margin = new System.Windows.Forms.Padding(20, 2, 3, 2);
+            this.HelpBt.Name = "HelpBt";
+            this.HelpBt.Size = new System.Drawing.Size(55, 50);
+            this.HelpBt.TabIndex = 3;
+            this.HelpBt.Text = "?";
+            this.EditToolTip.SetToolTip(this.HelpBt, "Справка");
+            this.HelpBt.UseVisualStyleBackColor = false;
+            this.HelpBt.Click += new System.EventHandler(this.HelpBt_Click);
+            // 
+            // editPreviewPB1
+            // 
+            this.editPreviewPB1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.editPreviewPB1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.editPreviewPB1.Location = new System.Drawing.Point(16, 307);
+            this.editPreviewPB1.Name = "editPreviewPB1";
+            pictureEditParams1.Brightness = null;
+            pictureEditParams1.Frames = null;
+            pictureEditParams1.IsFlipped = false;
+            pictureEditParams1.Tone = null;
+            this.editPreviewPB1.PicEditParams = pictureEditParams1;
+            this.editPreviewPB1.Size = new System.Drawing.Size(102, 82);
+            this.editPreviewPB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.editPreviewPB1.TabIndex = 9;
+            this.editPreviewPB1.TabStop = false;
+            this.EditToolTip.SetToolTip(this.editPreviewPB1, "Предварительный просмотр");
             // 
             // EditPicturesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 702);
+            this.Controls.Add(this.HelpBt);
             this.Controls.Add(this.PicturesFLP);
             this.Controls.Add(this.EditGB);
             this.Controls.Add(this.SettingsBt);
@@ -311,10 +342,10 @@
             this.Text = "Скажи Немезиде Нет! 3.0";
             this.EditGB.ResumeLayout(false);
             this.EditGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editPreviewPB1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FramesTBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrightnessTBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToneTBr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPreviewPB1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,5 +368,7 @@
         private System.Windows.Forms.FlowLayoutPanel PicturesFLP;
         private System.Windows.Forms.Button SettingsBt;
         private PreviewPictureBox editPreviewPB1;
+        private System.Windows.Forms.Button HelpBt;
+        private System.Windows.Forms.ToolTip EditToolTip;
     }
 }

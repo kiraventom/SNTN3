@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPicturesForm));
             this.AccountNameL = new System.Windows.Forms.Label();
             this.PicturesFLP = new System.Windows.Forms.FlowLayoutPanel();
@@ -35,6 +36,8 @@
             this.PrevStepBt = new System.Windows.Forms.Button();
             this.AddFolderBt = new System.Windows.Forms.Button();
             this.NextStepBt = new System.Windows.Forms.Button();
+            this.HelpBt = new System.Windows.Forms.Button();
+            this.AddToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // AccountNameL
@@ -75,6 +78,7 @@
             this.AddImagesBt.Name = "AddImagesBt";
             this.AddImagesBt.Size = new System.Drawing.Size(55, 50);
             this.AddImagesBt.TabIndex = 0;
+            this.AddToolTip.SetToolTip(this.AddImagesBt, "Добавить изображения");
             this.AddImagesBt.UseVisualStyleBackColor = false;
             this.AddImagesBt.Click += new System.EventHandler(this.AddImagesBt_Click);
             // 
@@ -90,6 +94,7 @@
             this.PrevStepBt.Name = "PrevStepBt";
             this.PrevStepBt.Size = new System.Drawing.Size(55, 50);
             this.PrevStepBt.TabIndex = 2;
+            this.AddToolTip.SetToolTip(this.PrevStepBt, "Вернуться к выбору аккаунта");
             this.PrevStepBt.UseVisualStyleBackColor = false;
             this.PrevStepBt.Click += new System.EventHandler(this.PrevStepBt_Click);
             // 
@@ -104,6 +109,7 @@
             this.AddFolderBt.Name = "AddFolderBt";
             this.AddFolderBt.Size = new System.Drawing.Size(55, 50);
             this.AddFolderBt.TabIndex = 0;
+            this.AddToolTip.SetToolTip(this.AddFolderBt, "Добавить папку");
             this.AddFolderBt.UseVisualStyleBackColor = false;
             this.AddFolderBt.Click += new System.EventHandler(this.AddFolderBt_Click);
             // 
@@ -119,8 +125,25 @@
             this.NextStepBt.Name = "NextStepBt";
             this.NextStepBt.Size = new System.Drawing.Size(55, 50);
             this.NextStepBt.TabIndex = 0;
+            this.AddToolTip.SetToolTip(this.NextStepBt, "Перейти к редактированию");
             this.NextStepBt.UseVisualStyleBackColor = false;
             this.NextStepBt.Click += new System.EventHandler(this.NextStepBt_Click);
+            // 
+            // HelpBt
+            // 
+            this.HelpBt.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.HelpBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HelpBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpBt.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold);
+            this.HelpBt.Location = new System.Drawing.Point(156, 10);
+            this.HelpBt.Margin = new System.Windows.Forms.Padding(13, 2, 3, 2);
+            this.HelpBt.Name = "HelpBt";
+            this.HelpBt.Size = new System.Drawing.Size(55, 50);
+            this.HelpBt.TabIndex = 0;
+            this.HelpBt.Text = "?";
+            this.AddToolTip.SetToolTip(this.HelpBt, "Справка");
+            this.HelpBt.UseVisualStyleBackColor = false;
+            this.HelpBt.Click += new System.EventHandler(this.HelpBt_Click);
             // 
             // AddPicturesForm
             // 
@@ -129,6 +152,7 @@
             this.ClientSize = new System.Drawing.Size(727, 506);
             this.Controls.Add(this.AddImagesBt);
             this.Controls.Add(this.PrevStepBt);
+            this.Controls.Add(this.HelpBt);
             this.Controls.Add(this.AddFolderBt);
             this.Controls.Add(this.PicturesFLP);
             this.Controls.Add(this.AccountNameL);
@@ -150,5 +174,7 @@
         private System.Windows.Forms.Button NextStepBt;
         private System.Windows.Forms.Label AccountNameL;
         private System.Windows.Forms.Button PrevStepBt;
+        private System.Windows.Forms.Button HelpBt;
+        private System.Windows.Forms.ToolTip AddToolTip;
     }
 }

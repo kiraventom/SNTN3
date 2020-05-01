@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostingView));
             this.StartingDayL = new System.Windows.Forms.Label();
             this.StartingTimeL = new System.Windows.Forms.Label();
@@ -45,6 +46,8 @@
             this.SaveSettingsBt = new System.Windows.Forms.Button();
             this.PrevStepBt = new System.Windows.Forms.Button();
             this.PostBt = new System.Windows.Forms.Button();
+            this.HelpBt = new System.Windows.Forms.Button();
+            this.PostingToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.MainP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StartingTimeNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeBetweenNUD)).BeginInit();
@@ -250,6 +253,7 @@
             this.PrevStepBt.Name = "PrevStepBt";
             this.PrevStepBt.Size = new System.Drawing.Size(55, 50);
             this.PrevStepBt.TabIndex = 4;
+            this.PostingToolTip.SetToolTip(this.PrevStepBt, "Вернуться к редактированию");
             this.PrevStepBt.UseVisualStyleBackColor = false;
             this.PrevStepBt.Click += new System.EventHandler(this.PrevStepBt_Click);
             // 
@@ -265,20 +269,39 @@
             this.PostBt.Name = "PostBt";
             this.PostBt.Size = new System.Drawing.Size(55, 50);
             this.PostBt.TabIndex = 5;
+            this.PostingToolTip.SetToolTip(this.PostBt, "Начать публикацию");
             this.PostBt.UseVisualStyleBackColor = false;
             this.PostBt.Click += new System.EventHandler(this.PostBt_Click);
             // 
-            // PostingForm
+            // HelpBt
+            // 
+            this.HelpBt.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.HelpBt.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.HelpBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HelpBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpBt.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold);
+            this.HelpBt.Location = new System.Drawing.Point(335, 11);
+            this.HelpBt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.HelpBt.Name = "HelpBt";
+            this.HelpBt.Size = new System.Drawing.Size(55, 50);
+            this.HelpBt.TabIndex = 8;
+            this.HelpBt.Text = "?";
+            this.PostingToolTip.SetToolTip(this.HelpBt, "Справка");
+            this.HelpBt.UseVisualStyleBackColor = false;
+            this.HelpBt.Click += new System.EventHandler(this.HelpBt_Click);
+            // 
+            // PostingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 260);
+            this.Controls.Add(this.HelpBt);
             this.Controls.Add(this.SaveSettingsBt);
             this.Controls.Add(this.MainP);
             this.Controls.Add(this.PrevStepBt);
             this.Controls.Add(this.PostBt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "PostingForm";
+            this.Name = "PostingView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Скажи Немезиде Нет! 3.0";
             this.Load += new System.EventHandler(this.PostingForm_Load);
@@ -309,5 +332,7 @@
         private System.Windows.Forms.Label HoursL;
         private System.Windows.Forms.Button SaveSettingsBt;
         private System.Windows.Forms.Label InL;
+        private System.Windows.Forms.Button HelpBt;
+        private System.Windows.Forms.ToolTip PostingToolTip;
     }
 }

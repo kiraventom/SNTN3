@@ -46,5 +46,16 @@ namespace SNTN3_Forms
         {
             Model.AddNewAccount();
         }
+
+        private void HelpBt_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text: "Для добавления аккаунта нажмите на кнопку с изображением человека и знака плюса.\n" +
+                "Для авторизации в аккаунт и перехода к работе с изображениями нажмите на него левой кнопкой мыши.\n" +
+                "Для удаления аккаунта из приложения нажмите на него правой кнопкой мыши.",
+                caption: "Справка",
+                buttons: MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Question);
+        }
     }
 }
