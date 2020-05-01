@@ -110,7 +110,21 @@ namespace SNTN3_Forms
             {
                 foreach (string pathToNewPicture in e.NewItems)
                 {
-                    Bitmap orig = new Bitmap(pathToNewPicture);
+                    Bitmap orig;
+                    try
+                    {
+                        orig = new Bitmap(pathToNewPicture);
+                    }
+                    catch (ArgumentException)
+                    {
+                        MessageBox.Show(
+                            text: "Некорректное изображение!",
+                            caption: "Ошибка",
+                            buttons: MessageBoxButtons.OK,
+                            icon: MessageBoxIcon.Error);
+                        PathsToPictures.Remove(pathToNewPicture);
+                        continue;
+                    }
                     Size btSize = BtSize;
                     var adjustedSize = PictureEditParams.AdjustImageSizeToSquareControl(orig.Size, btSize);
                     Bitmap thumb = new Bitmap(orig, adjustedSize);
@@ -146,9 +160,12 @@ namespace SNTN3_Forms
             {
                 foreach (string pathToOldPicture in e.OldItems)
                 {
-                    var button = PicturesFLP.Controls.OfType<Button>().Single(bt => bt.Tag.ToString() == pathToOldPicture);
-                    button.BackgroundImage.Dispose();
-                    PicturesFLP.Controls.Remove(button);
+                    var button = PicturesFLP.Controls.OfType<Button>().SingleOrDefault(bt => bt.Tag.ToString() == pathToOldPicture);
+                    if (button != null)
+                    {
+                        button.BackgroundImage.Dispose();
+                        PicturesFLP.Controls.Remove(button);
+                    }
                 }
             }
         }
